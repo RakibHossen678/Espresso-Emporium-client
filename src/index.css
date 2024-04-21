@@ -6,3 +6,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.container{
+    background-image: url(../src/assets/more/11.png);
+    min-height: 100vh;
+}
+
