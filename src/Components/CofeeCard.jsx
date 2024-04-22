@@ -87,5 +87,7 @@ const CofeeCard = ({ coffee ,setCoffees,coffees}) => {
 };
 CofeeCard.propTypes = {
   coffee: PropTypes.object,
+  coffees:PropTypes.array,
+  setCoffees:PropTypes.func
 };
 export default CofeeCard;
