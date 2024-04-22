@@ -42,7 +42,7 @@ const AddCoffee = () => {
           title: 'success!',
           text: 'Coffee added successfully',
           icon: 'success',
-          confirmButtonText: 'Cool'
+          confirmButtonText: 'ok'
         })
       }
     })
@@ -76,6 +76,7 @@ const AddCoffee = () => {
                     Name
                   </label>
                   <input
+                  required
                     id="name"
                     type="text"
                     name="name"
@@ -100,6 +101,7 @@ const AddCoffee = () => {
                     Supplier Name
                   </label>
                   <input
+                  required
                     id="text"
                     type="supplier"
                     name="supplier"
