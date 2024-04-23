@@ -5,6 +5,7 @@ import CofeeCard from "./Components/CofeeCard";
 import { useState } from "react";
 import Header from "./Components/Header";
 import Banner from "./Components/Banner";
+import About from "./Components/About";
 
 function App() {
   const loadedCoffees = useLoaderData();
@@ -15,6 +16,7 @@ function App() {
     <div>
       <Header></Header>
       <Banner></Banner>
+      <About></About>
       <div style={{ backgroundImage: `url('/src/assets/more/1.png')` }}>
         <div className="lg:w-9/12 coffee mx-auto my-20">
           <div className="text-enter flex flex-col items-center justify-center">
