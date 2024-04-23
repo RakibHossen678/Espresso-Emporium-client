@@ -1,7 +1,44 @@
+import { useContext } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const SignIn = () => {
+  const {loginUser}=useContext(AuthContext)
+  const handleSignIn=(e)=>{
+    e.preventDefault()
+    const form=e.target
+    const email=form.email.value
+    const password=form.password.value
+    console.log(email,password)
+    loginUser(email,password)
+    .then(result=>{
+      console.log(result.user)
+      
+      const user={
+        email,
+        lastLoggedAt:result.user?.metadata.lastSignInTime
+      }
+
+      fetch('http://localhost:5000/user',{
+        method:'PATCH',
+        headers:{
+          "content-type":"application/json"
+        },
+        body:JSON.stringify(user)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+      })
+
+
+
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+  }
   return (
     <div className="w-full max-w-3xl mx-auto mt-24 p-8 space-y-3 rounded-xl bg-[#f4f3f09d]">
       <Link
@@ -16,7 +53,7 @@ const SignIn = () => {
       <p className="text-center font-raleway text-[#1b1a1ab3] pb-3">
         Sign in to access your account
       </p>
-      <form noValidate="" action="" className="space-y-6">
+      <form onSubmit={handleSignIn} noValidate="" action="" className="space-y-6">
         <div className="space-y-1 text-sm">
           <label htmlFor="username" className="block ont-raleway font-semibold">
             Email
