@@ -1,10 +1,49 @@
+import { useContext } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-    const handleSignUp=e=>{
-        e.preventDefault()
-    }
+  const { createUser } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        const createdAt = result.user?.metadata.creationTime;
+        const user = { email, createdAt };
+
+        
+
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                title: "success!",
+                text: "User created successfully",
+                icon: "success",
+                confirmButtonText: "ok",
+              });
+            }
+            form.reset();
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="w-full max-w-3xl mx-auto mt-24 p-8 space-y-3 rounded-xl bg-[#f4f3f09d]">
       <Link
@@ -19,7 +58,12 @@ const SignUp = () => {
       <p className="text-center font-raleway text-[#1b1a1ab3] pb-3">
         Sign Up to create new account
       </p>
-      <form onSubmit={handleSignUp} noValidate="" action="" className="space-y-6">
+      <form
+        onSubmit={handleSignUp}
+        noValidate=""
+        action=""
+        className="space-y-6"
+      >
         <div className="space-y-1 text-sm">
           <label htmlFor="username" className="block ont-raleway font-semibold">
             Name
@@ -37,6 +81,7 @@ const SignUp = () => {
             Email
           </label>
           <input
+            required
             type="email"
             name="email"
             id="email"
@@ -85,7 +130,7 @@ const SignUp = () => {
 
       <p className="text-xs text-center sm:px-6 text-gray-400 font-raleway text-[#1b1a1ab3]">
         Already have account?
-        <Link to='/signIn'>
+        <Link to="/signIn">
           <a rel="noopener noreferrer" href="#" className="underline ">
             Sign in
           </a>
