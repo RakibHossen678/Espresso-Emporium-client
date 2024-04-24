@@ -6,6 +6,7 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import Banner from "./Components/Banner";
 import About from "./Components/About";
+import Follow from "./Components/Follow";
 
 function App() {
   const loadedCoffees = useLoaderData();
@@ -49,6 +50,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Follow></Follow>
     </div>
   );
 }
