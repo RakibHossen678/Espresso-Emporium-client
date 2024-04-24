@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const About = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/about")
+    fetch("https://espresso-emporium-server-weld.vercel.app/about")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

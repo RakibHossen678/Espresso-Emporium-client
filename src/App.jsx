@@ -14,7 +14,6 @@ function App() {
   const [coffees, setCoffees] = useState(loadedCoffees);
   return (
     <div>
-      <Header></Header>
       <Banner></Banner>
       <About></About>
       <div style={{ backgroundImage: `url('/src/assets/more/1.png')` }}>

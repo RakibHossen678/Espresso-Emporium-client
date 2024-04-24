@@ -18,7 +18,7 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(id);
-        fetch(`http://localhost:5000/user/${id}`, {
+        fetch(`https://espresso-emporium-server-weld.vercel.app/user/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

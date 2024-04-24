@@ -20,7 +20,7 @@ const SignIn = () => {
         lastLoggedAt:result.user?.metadata.lastSignInTime
       }
 
-      fetch('http://localhost:5000/user',{
+      fetch('https://espresso-emporium-server-weld.vercel.app/user',{
         method:'PATCH',
         headers:{
           "content-type":"application/json"
