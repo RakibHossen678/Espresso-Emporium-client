@@ -10,6 +10,8 @@ import SignIn from "./Components/SignIn";
 import AuthProvider from "./Provider/AuthProvider";
 import Users from "./Components/Users";
 import MainLayout from "./Layout/MainLayout";
+import PrivateRoute from "./Routes/PrivateRoute";
+import CoffeeDetails from "./Components/CoffeeDetails";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App></App>,
-        loader: () => fetch("https://espresso-emporium-server-weld.vercel.app/coffee"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-weld.vercel.app/coffee"),
       },
       {
         path: "/addCoffee",
@@ -27,9 +30,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateCoffee/:id",
-        element: <UpdateCoffee></UpdateCoffee>,
+        element: (
+          <PrivateRoute>
+            <UpdateCoffee></UpdateCoffee>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`https://espresso-emporium-server-weld.vercel.app/coffee/${params.id}`),
+          fetch(
+            `https://espresso-emporium-server-weld.vercel.app/coffee/${params.id}`
+          ),
+      },
+      {
+        path: "/coffeeDetails/:id",
+        element: (
+          <PrivateRoute>
+            <CoffeeDetails></CoffeeDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://espresso-emporium-server-weld.vercel.app/coffee/${params.id}`
+          ),
       },
       {
         path: "/signUp",
@@ -42,7 +63,8 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users></Users>,
-        loader: () => fetch("https://espresso-emporium-server-weld.vercel.app/user"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-weld.vercel.app/user"),
       },
     ],
   },

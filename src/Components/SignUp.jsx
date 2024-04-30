@@ -46,10 +46,10 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="w-full max-w-3xl mx-auto mt-24 p-8 space-y-3 rounded-xl bg-[#f4f3f09d]">
+    <div className="w-full max-w-3xl mx-auto mt-24 p-8 space-y-3 rounded-xl bg-[#f4f3f09d] ">
       <Link
         to="/"
-        className="absolute flex items-center  font-rancho text-xl font-semibold top-9 drop-shadow-xl hover:bg-[#D2B48C] hover:px-3 py-1 lg:left-[460px]  left-4"
+        className="absolute flex items-center  font-rancho text-xl font-semibold top-28 drop-shadow-xl hover:bg-[#D2B48C] hover:px-3 py-1 lg:left-[378px]  left-4"
       >
         <FaArrowLeftLong className="mr-2" /> Back to home
       </Link>

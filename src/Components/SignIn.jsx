@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const SignIn = () => {
   const {loginUser}=useContext(AuthContext)
+  const location=useLocation()
+  const navigate=useNavigate()
   const handleSignIn=(e)=>{
     e.preventDefault()
     const form=e.target
@@ -13,7 +15,7 @@ const SignIn = () => {
     console.log(email,password)
     loginUser(email,password)
     .then(result=>{
-      console.log(result.user)
+      navigate(location?.state ? location?.state : '/')
       
       const user={
         email,
@@ -43,7 +45,7 @@ const SignIn = () => {
     <div className="w-full max-w-3xl mx-auto mt-24 p-8 space-y-3 rounded-xl bg-[#f4f3f09d]">
       <Link
         to="/"
-        className="absolute flex items-center  font-rancho text-xl font-semibold top-9 drop-shadow-xl hover:bg-[#D2B48C] hover:px-3 py-1 lg:left-[460px]  left-4"
+        className="absolute flex items-center  font-rancho text-xl font-semibold top-28 drop-shadow-xl hover:bg-[#D2B48C] hover:px-3 py-1 lg:left-[380px]  left-4"
       >
         <FaArrowLeftLong className="mr-2" /> Back to home
       </Link>

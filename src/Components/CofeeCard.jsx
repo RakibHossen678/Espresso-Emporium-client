@@ -60,11 +60,11 @@ const CofeeCard = ({ coffee ,setCoffees,coffees}) => {
           </h2>
         </div>
         <div className="space-y-6">
-          <div>
+          <Link to={`/coffeeDetails/${_id}`}>
             <button className="bg-[#D2B48C] px-2 py-1 rounded-md text-white">
               <FaRegEye className="text-xl" />
             </button>
-          </div>
+          </Link>
           <div>
             <Link to={`/updateCoffee/${_id}`}>
               <button className="bg-[#3C393B] text-white px-2 py-1 rounded-md">
